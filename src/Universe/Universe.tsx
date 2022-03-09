@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Cells } from "./types";
+import useGeneration from "./useGeneration";
 
 const CELL_SIZE = 50;
 
@@ -17,22 +18,50 @@ const Cell = styled.li<{ isLive: boolean }>(({ isLive }) => ({
   backgroundColor: isLive ? "#000" : "#fff",
 }));
 
+const ProgressIndicator = styled.div<{ inProgress: boolean }>(
+  ({ inProgress }) => ({
+    width: 30,
+    height: 30,
+    backgroundColor: inProgress ? "#1ba91b" : "#fb2323",
+    borderRadius: "50%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#fff",
+  })
+);
+
+const FlexBox = styled.div(() => ({
+  display: "flex",
+  alignItems: "center",
+}));
+
 interface UniverseProps {
   seed: Cells;
   generationsCount: number;
 }
 
 const Universe = (props: UniverseProps) => {
-  if (!props.seed[0]) return <>{"Empty seed provided"}</>;
+  const { cells, inProgress, generationsLeft } = useGeneration(props);
+
+  if (!cells[0]) return <>{"Empty seed provided"}</>;
 
   const gridColumns = props.seed[0].length;
 
   return (
-    <Grid gridColumns={gridColumns}>
-      {props.seed.flat().map((cell, index) => (
-        <Cell isLive={Boolean(cell)} key={index} />
-      ))}
-    </Grid>
+    <>
+      <FlexBox>
+        {"Generations left: "}
+        <ProgressIndicator inProgress={inProgress}>
+          {generationsLeft}
+        </ProgressIndicator>
+      </FlexBox>
+      <Grid gridColumns={gridColumns}>
+        {cells.flat().map((cell, index) => (
+          <Cell isLive={Boolean(cell)} key={index} />
+        ))}
+      </Grid>
+    </>
   );
 };
 

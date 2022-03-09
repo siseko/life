@@ -2,9 +2,14 @@ import React, { useCallback, useState } from "react";
 import "./reset.css";
 import { Cells, Universe } from "./Universe";
 
-
 const generateSeed = (): Cells => {
-  return [[{ isLive: true }]];
+  return [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+  ];
 };
 
 const App = () => {
@@ -12,7 +17,7 @@ const App = () => {
 
   const reset = useCallback(() => setSeed(generateSeed()), []);
 
-  return <Universe seed={seed} generationsCount={1} />;
+  return <Universe seed={seed} generationsCount={6} />;
 };
 
 export default App;

@@ -14,16 +14,15 @@ const getLiveNeighboursCount = (row: number, column: number, cells: Cells) => {
   return count;
 };
 
-const moveToNextTick = (cells: Cells) => {
-  return cells.map((rows, row) =>
+const moveToNextTick = (cells: Cells) =>
+  cells.map((rows, row) =>
     rows.map((cell, column) => {
       const count = getLiveNeighboursCount(row, column, cells);
+
       if (cell && (count === 2 || count === 3)) return 1;
       if (!cell && count === 3) return 1;
-
       return 0;
     })
   );
-};
 
 export default moveToNextTick;
