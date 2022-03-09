@@ -30,7 +30,7 @@ const Universe = (props: UniverseProps) => {
   return (
     <Grid gridColumns={gridColumns}>
       {props.seed.flat().map((cell, index) => (
-        <Cell isLive={cell.isLive} key={index}></Cell>
+        <Cell isLive={Boolean(cell)} key={index} />
       ))}
     </Grid>
   );
