@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { Input } from "./components";
 import "./reset.css";
 import { Cells, Universe } from "./Universe";
 
@@ -19,7 +20,18 @@ const App = () => {
   );
 
   // TODO: add input component for width and height and generations count
-  return <Universe seed={seed} generationsCount={6} />;
+  return (
+    <>
+      <Input
+        value={String(width)}
+        onChange={(value) => setWidth(Number(value))}
+        label='Board length'
+        attrs={{ type: "number", min: 1 }}
+        containerStyles={{ width: 100 }}
+      />
+      <Universe seed={seed} generationsCount={6} />
+    </>
+  );
 };
 
 export default App;
