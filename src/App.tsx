@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import styled from "styled-components";
 import { Input } from "./components";
 import { Cells, Universe } from "./Universe";
@@ -19,13 +19,14 @@ const App = () => {
   const [width, setWidth] = useState(20);
   const [length, setLength] = useState(15);
   const [generationsCount, setGenerationsCount] = useState(4);
+  const generationsCountRef = useRef(generationsCount);
 
   const [seed, setSeed] = useState<Cells>(generateSeed(width, length));
 
-  const handleReset = useCallback(
-    () => setSeed(generateSeed(width, length)),
-    [width, length]
-  );
+  const handleReset = useCallback(() => {
+    generationsCountRef.current = generationsCount;
+    setSeed(generateSeed(width, length));
+  }, [width, length, generationsCount]);
 
   return (
     <div style={{ display: "flex" }}>
@@ -49,7 +50,11 @@ const App = () => {
           {...inputConfig}
         />
       </Configuration>
-      <Universe seed={seed} generationsCount={6} />
+      <Universe
+        seed={seed}
+        generationsCount={generationsCountRef.current}
+        onReset={handleReset}
+      />
     </div>
   );
 };

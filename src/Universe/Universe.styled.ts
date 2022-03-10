@@ -32,4 +32,5 @@ export const ProgressIndicator = styled.div<{ inProgress: boolean }>(
 export const FlexBox = styled.div(() => ({
   display: "flex",
   alignItems: "center",
+  justifyContent: 'space-between'
 }));

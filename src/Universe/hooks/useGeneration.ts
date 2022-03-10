@@ -16,6 +16,10 @@ const useGeneration = ({
   const countRef = useRef(0);
 
   useEffect(() => {
+    setCells(seed);
+    setInProgress(true);
+    countRef.current = 0;
+
     const intervalId = setInterval(() => {
       countRef.current++;
       setCells(moveToNextTick);
@@ -28,7 +32,7 @@ const useGeneration = ({
     }, GENERATION_TIMEOUT);
 
     return () => clearInterval(intervalId);
-  }, [generationsCount]);
+  }, [generationsCount, seed]);
 
   return {
     cells,
