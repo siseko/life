@@ -1,4 +1,4 @@
-import { Cells } from ".";
+import { Cells } from "..";
 import moveToNextTick from "./moveToNextTick";
 
 describe("The moveToNextTick helper", () => {

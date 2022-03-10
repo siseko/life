@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { GENERATION_TIMEOUT } from "./constants";
-import moveToNextTick from "./moveToNextTick";
-import { Cells } from "./types";
+import moveToNextTick from "../helpers/moveToNextTick";
+import { Cells } from "../types";
+
+export const GENERATION_TIMEOUT = 2000;
 
 const useGeneration = ({
   seed,

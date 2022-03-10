@@ -1,40 +1,7 @@
 import React from "react";
-import styled from "styled-components";
-import { Cells } from "./types";
-import useGeneration from "./useGeneration";
-
-const CELL_SIZE = 50;
-
-const Grid = styled.ul<{ gridColumns: number }>(({ gridColumns }) => ({
-  display: "inline-grid",
-  gridTemplateColumns: `repeat(${gridColumns}, ${CELL_SIZE}px)`,
-  gap: 3,
-  border: `3px solid #ccc`,
-  backgroundColor: "#ccc",
-}));
-
-const Cell = styled.li<{ isLive: boolean }>(({ isLive }) => ({
-  height: CELL_SIZE,
-  backgroundColor: isLive ? "#000" : "#fff",
-}));
-
-const ProgressIndicator = styled.div<{ inProgress: boolean }>(
-  ({ inProgress }) => ({
-    width: 30,
-    height: 30,
-    backgroundColor: inProgress ? "#1ba91b" : "#fb2323",
-    borderRadius: "50%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "#fff",
-  })
-);
-
-const FlexBox = styled.div(() => ({
-  display: "flex",
-  alignItems: "center",
-}));
+import { Cells } from ".";
+import useGeneration from "./hooks/useGeneration";
+import { Cell, FlexBox, Grid, ProgressIndicator } from "./Universe.styled";
 
 interface UniverseProps {
   seed: Cells;

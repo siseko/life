@@ -1,4 +1,4 @@
-import { Cells } from ".";
+import { Cells } from "..";
 
 const getLiveNeighboursCount = (row: number, column: number, cells: Cells) => {
   let count = 0;

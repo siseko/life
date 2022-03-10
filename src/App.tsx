@@ -2,11 +2,10 @@ import React, { useCallback, useState } from "react";
 import "./reset.css";
 import { Cells, Universe } from "./Universe";
 
-const generateSeed = (width: number, length: number): Cells => {
-  return Array.from({ length }).map((_) =>
+const generateSeed = (width: number, length: number): Cells =>
+  Array.from({ length }).map((_) =>
     Array.from({ length: width }).map((_) => Math.round(Math.random()))
   );
-};
 
 const App = () => {
   const [width, setWidth] = useState(4);
