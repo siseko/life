@@ -55,6 +55,7 @@ const Universe = (props: UniverseProps) => {
         <ProgressIndicator inProgress={inProgress}>
           {generationsLeft}
         </ProgressIndicator>
+        {/* TODO: add reset button when no generations left */}
       </FlexBox>
       <Grid gridColumns={gridColumns}>
         {cells.flat().map((cell, index) => (

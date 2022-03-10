@@ -2,21 +2,24 @@ import React, { useCallback, useState } from "react";
 import "./reset.css";
 import { Cells, Universe } from "./Universe";
 
-const generateSeed = (): Cells => {
-  return [
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 1, 1, 1, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-  ];
+const generateSeed = (width: number, length: number): Cells => {
+  return Array.from({ length }).map((_) =>
+    Array.from({ length: width }).map((_) => Math.round(Math.random()))
+  );
 };
 
 const App = () => {
-  const [seed, setSeed] = useState<Cells>(generateSeed());
+  const [width, setWidth] = useState(4);
+  const [length, setLength] = useState(4);
 
-  const reset = useCallback(() => setSeed(generateSeed()), []);
+  const [seed, setSeed] = useState<Cells>(generateSeed(width, length));
 
+  const handleReset = useCallback(
+    () => setSeed(generateSeed(width, length)),
+    [width, length]
+  );
+
+  // TODO: add input component for width and height and generations count
   return <Universe seed={seed} generationsCount={6} />;
 };
 
