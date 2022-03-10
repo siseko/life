@@ -16,7 +16,7 @@ const Universe = (props: UniverseProps) => {
   const gridColumns = props.seed[0].length;
 
   return (
-    <>
+    <div>
       <FlexBox>
         {"Generations left: "}
         <ProgressIndicator inProgress={inProgress}>
@@ -29,7 +29,7 @@ const Universe = (props: UniverseProps) => {
           <Cell isLive={Boolean(cell)} key={index} />
         ))}
       </Grid>
-    </>
+    </div>
   );
 };
 

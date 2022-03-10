@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
+import styled from "styled-components";
 import { Input } from "./components";
-import "./reset.css";
 import { Cells, Universe } from "./Universe";
 
 const generateSeed = (width: number, length: number): Cells =>
@@ -8,9 +8,17 @@ const generateSeed = (width: number, length: number): Cells =>
     Array.from({ length: width }).map((_) => Math.round(Math.random()))
   );
 
+const Configuration = styled.div(() => ({ marginRight: 50 }));
+
+const containerStyles = { width: 150, margin: "18px 0" };
+const attrs = { type: "number", min: 1 };
+
+const inputConfig = { containerStyles, attrs };
+
 const App = () => {
-  const [width, setWidth] = useState(4);
-  const [length, setLength] = useState(4);
+  const [width, setWidth] = useState(20);
+  const [length, setLength] = useState(15);
+  const [generationsCount, setGenerationsCount] = useState(4);
 
   const [seed, setSeed] = useState<Cells>(generateSeed(width, length));
 
@@ -19,18 +27,30 @@ const App = () => {
     [width, length]
   );
 
-  // TODO: add input component for width and height and generations count
   return (
-    <>
-      <Input
-        value={String(width)}
-        onChange={(value) => setWidth(Number(value))}
-        label='Board length'
-        attrs={{ type: "number", min: 1 }}
-        containerStyles={{ width: 100 }}
-      />
+    <div style={{ display: "flex" }}>
+      <Configuration>
+        <Input
+          value={String(width)}
+          onChange={(value) => setWidth(Number(value))}
+          label="Board width"
+          {...inputConfig}
+        />
+        <Input
+          value={String(length)}
+          onChange={(value) => setLength(Number(value))}
+          label="Board length"
+          {...inputConfig}
+        />
+        <Input
+          value={String(generationsCount)}
+          onChange={(value) => setGenerationsCount(Number(value))}
+          label="Generations count"
+          {...inputConfig}
+        />
+      </Configuration>
       <Universe seed={seed} generationsCount={6} />
-    </>
+    </div>
   );
 };
 

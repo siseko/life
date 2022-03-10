@@ -1,7 +1,4 @@
-import React, {
-  ChangeEvent, InputHTMLAttributes,
-  useCallback
-} from "react";
+import React, { ChangeEvent, InputHTMLAttributes, useCallback } from "react";
 import styled, { CSSObject } from "styled-components";
 
 const StyledInput = styled.input(() => ({
@@ -39,7 +36,7 @@ const Input = ({
 
   const input = (
     <>
-      {label && <div style={{ fontWeight: "bold" }}>{label}</div>}
+      {label && <label style={{ fontWeight: "bold" }}>{label}</label>}
       <StyledInput value={value} onChange={handleOnChange} {...attrs} />
     </>
   );

@@ -8,6 +8,7 @@ export const Grid = styled.ul<{ gridColumns: number }>(({ gridColumns }) => ({
   gap: 3,
   border: `3px solid #ccc`,
   backgroundColor: "#ccc",
+  marginTop: "5px",
 }));
 
 export const Cell = styled.li<{ isLive: boolean }>(({ isLive }) => ({
