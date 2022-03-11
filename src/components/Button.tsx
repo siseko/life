@@ -8,7 +8,7 @@ const StyledButton = styled.button(({ disabled }) => ({
   padding: "10px 10px",
   cursor: disabled ? "not-allowed" : "pointer",
   color: "#fff",
-  backgroundColor: "#e93838",
+  backgroundColor: "#000",
   opacity: disabled ? 0.5 : 1,
 }));
 

@@ -10,7 +10,7 @@ const generateSeed = (width: number, length: number): Cells =>
 
 const Configuration = styled.div(() => ({ marginRight: 50 }));
 
-const containerStyles = { width: 150, margin: "18px 0" };
+const containerStyles = { width: 150, margin: "24px 0" };
 const attrs = { type: "number", min: 1 };
 
 const inputConfig = { containerStyles, attrs };
